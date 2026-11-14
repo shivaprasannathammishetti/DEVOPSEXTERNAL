@@ -1,0 +1,23 @@
+body{
+    text-align:center;
+    background-color: white;
+    font-family:arial;
+}
+form{
+    background-color:white;
+    width:auto;
+    margin:auto;
+    padding:20px;
+}
+input,select{
+    padding: 5px;
+    margin:auto;
+}
+button{
+    background-color: white;
+    color:white;
+    padding: auto;
+}
+h2{
+    color: white;
+}

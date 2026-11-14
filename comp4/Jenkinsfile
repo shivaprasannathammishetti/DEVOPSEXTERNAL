@@ -1,0 +1,47 @@
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code'
+                checkout scm
+            }
+        }
+
+        stage('Compilation') {
+            steps {
+                echo 'Compiling Java application'
+                bat 'mvn compile'
+            }
+        }
+
+        stage('Testing') {
+            steps {
+                echo 'Running JUnit tests'
+                bat 'mvn test'
+            }
+        }
+
+        stage('Packaging') {
+            steps {
+                echo 'Packaging Java application'
+                bat 'mvn package'
+            }
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'target/*.jar',
+                             fingerprint: true
+            echo 'CI/CD Pipeline Completed Successfully!'
+        }
+
+        failure {
+            echo 'CI/CD Pipeline Failed!'
+        }
+    }
+}
